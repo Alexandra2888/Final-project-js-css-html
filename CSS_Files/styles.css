@@ -1,3 +1,9 @@
+:root {
+  --red: #ff5c5c;
+  --yellow: #fbb03b;
+  --gray__dark: #888;
+  --gray: #d1d1d1;
+}
 body {
   display: flex;
   justify-content: center;
@@ -43,19 +49,19 @@ button {
 
 .calculator__equals {
   grid-column: span 2;
-  background-color: #fbb03b;
+  background-color: var(--yellow);
 }
 
 .calculator__clear {
-  background-color: #ff5c5c;
+  background-color: var(--red);
 }
 
 .calculator__decimal {
-  background-color: #d1d1d1;
+  background-color: var(--gray);
 }
 
 .calculator__backspace {
   grid-column: span 2;
-  background-color: #888;
+  background-color: var(--gray__dark);
   color: #fff;
 }

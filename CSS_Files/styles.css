@@ -14,7 +14,7 @@ body {
 }
 
 .calculator {
-  width: 240px;
+  width: 360px;
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 16px;
@@ -61,7 +61,7 @@ button {
 }
 
 .calculator__backspace {
-  grid-column: span 2;
+  grid-column: span 1;
   background-color: var(--gray__dark);
   color: #fff;
 }

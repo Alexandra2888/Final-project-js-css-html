@@ -1,32 +1,35 @@
-/* *,
-html,
-:root {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: rgb(28, 56, 90);
-  background: linear-gradient(
-    60deg,
-    rgba(28, 56, 90, 1) 0%,
-    rgba(100, 130, 167, 1) 100%
-  );
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100vh;
-}
- */
-
-/* Reset some default styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Apply a background color to the body */
+.main {
+  position: relative;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #d9ebe3 #e8ded4;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #e8ded4;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #d9ebe3;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}
+
 body {
   background: rgb(28, 56, 90);
   background: linear-gradient(
@@ -73,11 +76,102 @@ body {
 }
 
 .history__wrapper {
-  flex: 2;
+  flex: 350px;
+  width: 100%;
+  overflow-y: auto;
+  margin-top: 40px;
 }
 
-.history__quotes {
-  flex: 1;
+.history__group {
+  position: relative;
+  height: 540px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  margin: auto;
+  overflow-y: auto;
+  background: rgb(229, 207, 186);
+  background: linear-gradient(
+    27deg,
+    rgba(229, 207, 186, 1) 0%,
+    rgba(217, 235, 227, 1) 100%
+  );
+  box-shadow: rgba(141, 139, 139, 0.24) 0px 3px 8px;
+  padding: 40px;
+}
+.reuse__svg {
+  width: 100%;
+  height: auto;
+  color: white;
+  font-weight: 600;
+}
+.history__reuse-option-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-block;
+  width: 30px;
+}
+
+.history__option--content {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.history__option::after {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  content: "";
+  width: 100%;
+  background: rgb(229, 207, 186);
+  background: linear-gradient(
+    27deg,
+    rgba(229, 207, 186, 1) 0%,
+    rgba(217, 235, 227, 1) 100%
+  );
+  box-shadow: rgba(216, 216, 216, 0.8) 0px 3px 8px;
+  height: 5px;
+}
+
+.history__group > *:not(:first-child) {
+  margin-top: 20px;
+}
+
+.history__group > .history__option:last-child::after {
+  content: "";
+  display: none;
+}
+.history__option--calc {
+  color: #586d76;
+  font-size: 18px;
+}
+
+.history__option--result {
+  color: #586d76;
+  font-weight: 600;
+  font-size: 32px;
+}
+
+.history__quotes-group {
+  border-radius: 15px;
+  width: 90%;
+  text-align: center;
+  margin: auto;
+  height: fit-content;
+}
+
+.history__option {
+  position: relative;
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  height: min-content;
+  justify-content: space-between;
+  padding: 0px 20px;
 }
 
 .calculator {
@@ -95,38 +189,62 @@ body {
 }
 
 .calculator__screen {
+  position: relative;
   flex: 164px;
   background-color: #40535c;
   border-radius: 15px;
   width: 328px;
   height: 165px;
+  box-shadow: rgba(141, 139, 139, 0.24) 0px 3px 8px;
 }
 
 .calculator__screen-calc {
-  position: relative;
   margin-top: 30px;
+  position: relative;
+  text-align: right;
+  padding: 0px 10px;
   margin-left: 22px;
+  font-size: 45px;
+  font-weight: 600;
   border-radius: 15px;
   width: 274px;
   height: 105px;
   border: none;
+  color: #40535c;
   background-color: #9fc9bc;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 10px 50px -5px inset,
     rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
-.calculator__screen-calc::after {
-  content: "";
-  width: 10px;
-  z-index: 100;
-  height: 100px;
+.calculator__screen-calc::placeholder {
+  color: #40535c;
+}
+
+.calculator__screen::before {
+  content: "Abacus";
   position: absolute;
-  background-color: rgb(226, 71, 71);
+  bottom: 25px;
+  z-index: 10;
+  left: 30px;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  font-style: italic;
+  color: gray;
+  pointer-events: none;
 }
 
 input:focus,
 input:active {
   outline: none;
+}
+
+.calculator__screen-previous {
+  position: absolute;
+  top: 38px;
+  right: 45px;
+  font-size: 18px;
+  color: #40535c;
+  z-index: 1;
 }
 
 .calculator__buttons {
@@ -204,4 +322,13 @@ input:active {
 
 .double-width {
   grid-column: span 2;
+}
+
+.footer {
+  position: absolute;
+  bottom: 15px;
+  left: 40px;
+  color: #40535c;
+  font-style: italic;
+  letter-spacing: 0.2px;
 }

@@ -17,6 +17,7 @@ const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const previousInput = document.querySelector('[data-previous-input]');
 const currentInput = document.querySelector('[data-current-input]');
+const degitAvailable =document.querySelector('.degit');
 
 let prevOperand = previousInput.innerText;
 let currentOperand = currentInput.innerText;
@@ -37,12 +38,23 @@ const reset = () => {
 //delete an input
 const deleteInput = () => {
   currentOperand = currentOperand.toString().slice(0, -1);
+  if (currentOperand.toString().includes(".")){
+    return;
+  }else{
+    document.querySelector('.degit').disabled = false;
+  }
 };
 
 //add a number
 const addNumber = (number) => {
-  if (number === "." && currentOperand.includes(".")) return;
-  currentOperand = currentOperand.toString() + number.toString();
+  if (currentOperand.toString().includes(".")){
+    degitAvailable.disabled = true;
+    currentOperand = currentOperand.toString() + number.toString();
+  }else if (number==="." || !currentOperand.toString().includes(".")){
+    degitAvailable.disabled = false;
+    currentOperand = currentOperand.toString() + number.toString();
+  } 
+ //currentOperand = currentOperand.toString() + number.toString();
 };
 
 // select an operation
@@ -54,6 +66,7 @@ const operationSelection = (operate) => {
   operation = operate;
   prevOperand = currentOperand;
   currentOperand = "";
+  degitAvailable.disabled = false;
 };
 
 // function to select an advanced operation
@@ -74,12 +87,13 @@ const compute =(operate)=> {
   currentOperand = result;
   operation = undefined;
   prevOperand = "";
+ 
 };
 
 
 // Function to handle degit number
 const displayNumber=(number)=> {
-  const stringNumber = number.toString()
+  const stringNumber = number.toString();
   const integerDigits = parseFloat(stringNumber.split('.')[0])
   const decimalDigits = stringNumber.split('.')[1]
   let integerDisplay;
@@ -102,7 +116,7 @@ const updateDisplay=()=> {
    
   if (operation != null) {
      previousInput.innerText =
-      `${displayNumber(prevOperand)} ${operation}`;
+      `${displayNumber(prevOperand)} ${operation} `;
   } else {
     previousInput.innerText = ''
   }

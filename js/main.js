@@ -33,6 +33,7 @@ const reset = () => {
   currentOperand = "";
   operation = undefined;
   advancedOperator = undefined;
+  degitAvailable.disabled = false;
 };
 
 //delete an input
@@ -47,14 +48,21 @@ const deleteInput = () => {
 
 //add a number
 const addNumber = (number) => {
+  if (number==="." && currentOperand.toString().includes(".")){
+    degitAvailable.disabled = true;
+    return;
+  }
   if (currentOperand.toString().includes(".")){
     degitAvailable.disabled = true;
     currentOperand = currentOperand.toString() + number.toString();
   }else if (number==="." || !currentOperand.toString().includes(".")){
     degitAvailable.disabled = false;
     currentOperand = currentOperand.toString() + number.toString();
-  } 
- //currentOperand = currentOperand.toString() + number.toString();
+  }else{
+    currentOperand = currentOperand.toString() + number.toString();
+  }
+    
+ 
 };
 
 // select an operation

@@ -26,9 +26,9 @@ class Calculator {
         return this.add(a, b);
       case "-":
         return this.subtract(a, b);
-      case "x":
+      case "*":
         return this.multiply(a, b);
-      case "÷":
+      case "/":
         return this.divide(a, b);
       default:
         throw new Error("Invalid operator");

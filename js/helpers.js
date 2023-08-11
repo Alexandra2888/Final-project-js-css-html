@@ -15,9 +15,9 @@ function advancedOperation(operation,...operands) {
     case "cube":
       return Math.cbrt(operands[0]);
     case "nthRoot":
-      const ng = operands[0] % 2;
+      let ng = operands[0] % 2;
       if (ng == 1 || operands[0] < 0) operands[0] = -operands[0];
-      const r = Math.pow(operands[0], 1 / operands[1]);
+      let r = Math.pow(operands[0], 1 / operands[1]);
       operands[1] = Math.pow(r, operands[1]);
   
       if (Math.abs(operands[0] - operands[1]) < 1 && operands[0] > 0 === operands[1] > 0)

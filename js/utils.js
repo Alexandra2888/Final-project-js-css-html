@@ -22,13 +22,13 @@ class Calculator {
 
   operate(operator, a, b) {
     switch (operator) {
-      case "add":
+      case "+":
         return this.add(a, b);
-      case "subtract":
+      case "-":
         return this.subtract(a, b);
-      case "multiply":
+      case "*":
         return this.multiply(a, b);
-      case "divide":
+      case "/":
         return this.divide(a, b);
       default:
         throw new Error("Invalid operator");

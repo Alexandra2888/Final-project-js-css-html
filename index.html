@@ -8,48 +8,91 @@
   <link rel="stylesheet" href="./css/styles.css" />
 </head>
 
+
+
 <body>
-  <main class="calculator">
-    <section>
-      <div class="calculator__result" id="display">0</div>
-    </section>
-    <section>
-      <div class="calculator__buttons">
-        <button class="calculator__function">tan</button>
-        <button class="calculator__function">cos</button>
-        <button class="calculator__function">sin</button>
-        <button class="calculator__function">abs</button>
-        <button class="calculator__function">ln</button>
-        <button class="calculator__function">%</button>
-        <button class="calculator__function">sqr</button>
-        <button class="calculator__function">nthRoot</button>
-        <button class="calculator__function">factorial</button>
-        <button class="calculator__function">log<sub>n</sub></button>
-        <button class="calculator__function">log<sub>10</sub></button>
-        <button class="calculator__function">x<sup>2</sup></button>
-        <button class="calculator__function">x<sup>n</sup></button>
-        <!--  -->
-        <button class="calculator__number">7</button>
-        <button class="calculator__number">8</button>
-        <button class="calculator__number">9</button>
-        <button class="calculator__operator">+</button>
-        <button class="calculator__number">4</button>
-        <button class="calculator__number">5</button>
-        <button class="calculator__number">6</button>
-        <button class="calculator__operator">-</button>
-        <button class="calculator__number">1</button>
-        <button class="calculator__number">2</button>
-        <button class="calculator__number">3</button>
-        <button class="calculator__operator">x</button>
-        <button class="calculator__number">0</button>
-        <button class="calculator__decimal">.</button>
-        <button class="calculator__operator">&#247;</button>
-        <button class="calculator__clear">C</button>
-        <button class="calculator__equals">=</button>
-        <button class="calculator__backspace">&#9003;</button>
+  <main class="main">
+    <div class="container">
+      <div class="history">
+        <div class="history__wrapper"></div>
+        <div class="history__quotes"></div>
       </div>
-    </section>
+      <div class="calculator">
+        <div class="calculator__wrapper">
+          <div class="calculator__screen">
+            <input class="calculator__screen-calc" type="text" />
+          </div>
+          <div class="calculator__buttons">
+            <div class="calculator__button double-width calculator__button--func">ln</div>
+            <div class="calculator__button calculator__button--func">abs</div>
+            <div class="calculator__button calculator__button--func">log</div>
+            <div class="calculator__button calculator__button--func">n!</div>
+            <div class="calculator__button calculator__button--func">bin</div>
+            <div class="calculator__button calculator__button--func">dec</div>
+            <div class="calculator__button calculator__button--func">oct</div>
+            <div class="calculator__button calculator__button--func">%</div>
+            <div class="calculator__button calculator__button--func">x<sup>2</sup></div>
+            <div class="calculator__button calculator__button--func">x<sup>3</sup></div>
+            <div class="calculator__button calculator__button--func">x<sup>n</sup></div>
+            <div class="calculator__button calculator__button--func">sin</div>
+            <div class="calculator__button calculator__button--func">cos</div>
+            <div class="calculator__button calculator__button--func">tan</div>
+            <div class="calculator__button calculator__button--func">&pi;</div>
+            <div class="calculator__button calculator__button--basic-op">+</div>
+            <div class="calculator__button calculator__button--basic-op">-</div>
+            <div class="calculator__button calculator__button--basic-op">/</div>
+            <div class="calculator__button calculator__button--basic-op">*</div>
+            <div class="calculator__button calculator__button--num">7</div>
+            <div class="calculator__button calculator__button--num">8</div>
+            <div class="calculator__button calculator__button--num">9</div>
+            <div class="calculator__button calculator__button--ac">AC</div>
+            <div class="calculator__button calculator__button--num">4</div>
+            <div class="calculator__button calculator__button--num">5</div>
+            <div class="calculator__button calculator__button--num">6</div>
+            <div class="calculator__button triple-height calculator__button--equal">=</div>
+            <div class="calculator__button calculator__button--num">1</div>
+            <div class="calculator__button calculator__button--num">2</div>
+            <div class="calculator__button calculator__button--num">3</div>
+            <div class="calculator__button calculator__button--num">0</div>
+            <div class="calculator__button calculator__button--num">,</div>
+            <div class="calculator__button calculator__button--equal">DEL</div>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 
 </html>
+
+<!-- <button class="calculator__function">tan</button>
+<button class="calculator__function">cos</button>
+<button class="calculator__function">sin</button>
+<button class="calculator__function">abs</button>
+<button class="calculator__function">ln</button>
+<button class="calculator__function">%</button>
+<button class="calculator__function">sqr</button>
+<button class="calculator__function">nthRoot</button>
+<button class="calculator__function">factorial</button>
+<button class="calculator__function">log<sub>n</sub></button>
+<button class="calculator__function">log<sub>10</sub></button>
+<button class="calculator__function">x<sup>2</sup></button>
+<button class="calculator__function">x<sup>n</sup></button>
+<button class="calculator__number">7</button>
+<button class="calculator__number">8</button>
+<button class="calculator__number">9</button>
+<button class="calculator__operator">+</button>
+<button class="calculator__number">4</button>
+<button class="calculator__number">5</button>
+<button class="calculator__number">6</button>
+<button class="calculator__operator">-</button>
+<button class="calculator__number">1</button>
+<button class="calculator__number">2</button>
+<button class="calculator__number">3</button>
+<button class="calculator__operator">x</button>
+<button class="calculator__number">0</button>
+<button class="calculator__decimal">.</button>
+<button class="calculator__operator">&#247;</button>
+<button class="calculator__clear">C</button>
+<button class="calculator__equals">=</button>
+<button class="calculator__backspace">&#9003;</button> -->

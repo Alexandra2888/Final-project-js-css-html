@@ -1,0 +1,331 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --clr-light-primary: #d9ebe3;
+  --clr-light-secondary: #e8ded4;
+  --clr-light-tertiary: #e5cfba;
+  --clr-white: #ffff;
+  --clr-box-shadow-light: #ffffff59;
+  --clr-dark-blue: #40535c;
+  --clr-light-blue: #586d76;
+  --clr-light-sea: #9fc9bc;
+}
+
+.main {
+  position: relative;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #d9ebe3 #e8ded4;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 1rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--clr-light-secondary);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--clr-light-primary);
+  border-radius: 10px;
+  border: 3px solid var(--clr-white);
+}
+
+body {
+  background: #1c385a;
+  background: linear-gradient(60deg, #1c385a 0%, #6482a7 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.calculator__wrapper {
+  width: 20.5rem;
+  height: 41.125rem;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.container {
+  display: flex;
+  width: 60%;
+  min-width: 59.625rem;
+  height: 80vh;
+  box-shadow: var(--clr-box-shadow-light) -25px 15px 40px;
+  border-radius: 1.25rem;
+}
+
+.history {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #cbd8d0;
+  background: linear-gradient(0deg, #cbd8d0 0%, #e5e8de 100%);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  padding: 0 0 2em 0;
+}
+
+.history__wrapper {
+  flex: 21.875rem;
+  width: 100%;
+  overflow-y: auto;
+  margin-top: 2.5rem;
+}
+
+.history__group {
+  position: relative;
+  height: 100%;
+  border-radius: 0.9375;
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  margin: auto;
+  overflow-y: auto;
+  background: var(--clr-light-tertiary);
+  background: linear-gradient(27deg, #e5cfba 0%, #d9ebe3 100%);
+  box-shadow: #8d8b8b3d 0px 3px 8px;
+  padding: 2.5rem;
+}
+.reuse__svg {
+  width: 100%;
+  height: auto;
+  color: var(--clr-white);
+  font-weight: 600;
+}
+
+.history {
+  justify-content: flex-end;
+}
+
+.history__reuse-option-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: inline-block;
+  width: 1.875rem;
+}
+
+.history__option--content {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.history__option::after {
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  content: "";
+  width: 100%;
+  background: var(--clr-light-tertiary);
+  background: linear-gradient(27deg, #e5cfba 0%, #d9ebe3 100%);
+  box-shadow: #d8d8d8cc 0px 3px 8px;
+  height: 5px;
+}
+
+.history__group > *:not(:first-child) {
+  margin-top: 1.25rem;
+}
+
+.history__group > .history__option:last-child::after {
+  content: "";
+  display: none;
+}
+.history__option--calc {
+  color: var(--clr-light-blue);
+  font-size: 1.125rem;
+}
+
+.history__option--result {
+  color: var(--clr-light-blue);
+  font-weight: 600;
+  font-size: 2rem;
+}
+
+.history__quotes-group {
+  border-radius: 0.9375rem;
+  width: 90%;
+  text-align: center;
+  margin: auto;
+  height: fit-content;
+}
+
+.history__option {
+  position: relative;
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+  height: min-content;
+  justify-content: flex-end;
+  padding: 0px 1.25rem;
+}
+
+.calculator {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: #e7e3df;
+  background: linear-gradient(0deg, #e7e3df 0%, #f6edda 95%);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 2em 0;
+}
+
+.calculator__screen {
+  position: relative;
+  flex: 19%;
+  background-color: #40535c;
+  border-radius: 0.9375rem;
+  width: 20.5rem;
+  box-shadow: #8d8b8b3d 0px 3px 8px;
+}
+
+.calculator__screen-calc {
+  margin-top: 1.875rem;
+  position: relative;
+  text-align: right;
+  padding: 0px 10px;
+  height: 100px;
+  margin-left: 1.375rem;
+  font-size: 1.875rem;
+  font-weight: 600;
+  border-radius: 0.9375rem;
+  width: 17.125rem;
+  border: none;
+  color: var(--clr-dark-blue);
+  background-color: #9fc9bc;
+  box-shadow: #32325d40 0px 10px 50px -5px inset,
+    #0000004d 0px 18px 36px -18px inset;
+}
+
+.calculator__screen-calc::placeholder {
+  color: #40535c;
+}
+.calculator__screen::before {
+  content: "";
+  position: absolute;
+  bottom: clamp(1.5625px, 50%, 2rem);
+  left: clamp(35px, 25%, 1rem);
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  font-style: italic;
+  color: #808080;
+  pointer-events: none;
+  z-index: 10;
+}
+
+input:focus,
+input:active {
+  outline: none;
+}
+
+.calculator__screen-previous {
+  position: absolute;
+  top: 2.375rem;
+  right: 2.8125rem;
+  font-size: 18px;
+  color: var(--clr-dark-blue);
+  z-index: 1;
+}
+
+.calculator__buttons {
+  flex: 230px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.calculator__button {
+  background-color: #f3e4d2;
+  font-size: 20px;
+  border-radius: 7px;
+  width: auto;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  font-weight: 500;
+  font-style: italic;
+  border: 1px solid #c0c0c0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.calculator__button--ac {
+  background-color: var(--clr-light-sea);
+  color: var(--clr-white);
+  font-weight: 600;
+}
+
+.calculator__button--equal {
+  background-color: #bf6058;
+  color: var(--clr-white);
+  font-weight: 600;
+}
+
+.calculator__button--basic-op {
+  background-color: var(--clr-light-blue);
+  color: var(--clr-white);
+}
+.calculator__button--num {
+  background-color: #ebe8e4;
+}
+.calculator__button:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+
+.calculator__button--func {
+  background-color: #f3e4d2;
+}
+
+.double-size {
+  grid-row: span 2;
+  grid-column: span 2;
+}
+
+/* Spanning 3 rows and 1 column */
+.triple-height {
+  grid-row: span 3;
+}
+
+/* Spanning 1 row and 3 columns */
+.triple-width {
+  grid-column: span 3;
+}
+
+.double-width {
+  grid-column: span 2;
+}
+
+.footer {
+  display: flex;
+  position: absolute;
+  bottom: 5px;
+  left: 12%;
+  color: var(--clr-dark-blue);
+  font-style: italic;
+  letter-spacing: 0.2px;
+}

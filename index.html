@@ -1,34 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="description" content="Final project">
-        <meta name="keywords" content="HTML, CSS, JavaScript">
-        <title>Calculator</title>
-        <link rel="stylesheet" href="/CSS_Files/styles.css">
-        <script src="/JS_Files/app.js" defer></script>
-    </head>
-    <body>
-        <div class="calculator">
-            <div class="display">0</div>
-            <div class="button-container">
-                <button class="operator">C</button>
-                <button class="operator">/</button>
-                <button class="number">7</button>
-                <button class="number">8</button>
-                <button class="number">9</button>
-                <button class="operator">*</button>
-                <button class="number">4</button>
-                <button class="number">5</button>
-                <button class="number">6</button>
-                <button class="operator">-</button>
-                <button class="number">1</button>
-                <button class="number">2</button>
-                <button class="number">3</button>
-                <button class="operator">+</button>
-                <button class="number">0</button>
-                <button class="decimal">.</button>
-                <button class="equals">=</button>
+
+<head>
+  <meta name="description" content="Final project" />
+  <meta name="keywords" content="HTML, CSS, JavaScript" />
+  <title>Calculator</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+  <script type="module" src="./js/helpers.js" defer></script>
+  <script type="module" src="./js/main.js" defer></script>
+</head>
+
+<body>
+  <main class="main">
+    <div class="container">
+      <aside class="history">
+        <div class="history__wrapper">
+          <div class="history__group">
+            <div class="history__option">
             </div>
+          </div>
         </div>
-    </body>
+      </aside>
+      <section class="calculator">
+        <div class="calculator__wrapper">
+          <div class="calculator__screen">
+            <div class="calculator__screen-previous" id="previous__eq"></div>
+            <input id="active__value" class="calculator__screen-calc" type="text" placeholder="0" value="" />
+          </div>
+          <section class="calculator__buttons">
+            <button class="calculator__button calculator__button--basic-op">+</button>
+            <button class="calculator__button calculator__button--basic-op">-</button>
+            <button class="calculator__button calculator__button--basic-op">/</button>
+            <button class="calculator__button calculator__button--basic-op">*</button>
+            <button class="calculator__button calculator__button--num">7</button>
+            <button class="calculator__button calculator__button--num">8</button>
+            <button class="calculator__button calculator__button--num">9</button>
+            <button class="calculator__button calculator__button--ac" id="all-clear">AC</button>
+            <button class="calculator__button calculator__button--num">4</button>
+            <button class="calculator__button calculator__button--num">5</button>
+            <button class="calculator__button calculator__button--num">6</button>
+            <button class="calculator__button triple-height calculator__button--equal" id="equal__opt">=</button>
+            <button class="calculator__button calculator__button--num">1</button>
+            <button class="calculator__button calculator__button--num">2</button>
+            <button class="calculator__button calculator__button--num">3</button>
+            <button class="calculator__button calculator__button--num">0</button>
+            <button class="calculator__button calculator__button--point" id="floating__point">,</button>
+            <button class="calculator__button calculator__button--del" id="delete__opt">DEL</button>
+          </section>
+        </div>
+      </section>
+    </div>
+    <footer class="footer">
+      <p>&copy; Kreativstorm calculator assignment</p>
+    </footer>
+  </main>
+  <script type="module" src="./js/utils.js"></script>
+
+</body>
+
 </html>

@@ -1,245 +1,25 @@
-//  // Import the Calculator class from your file
-//  import { Calculator } from "./utils.js"; // Adjust the import path
+// globals
+let result = "";
+let resultList = [];
+let secondOperand = ""
+const operands = ["-", "+", "*", "/"];
+const currentValue = document.getElementById("active__value"); // string
+const previousEq = document.getElementById("previous__eq"); // string
+const btnNumbers = document.querySelectorAll('.calculator__button--num'); // get all numbers 
+const btnFunctions = document.querySelectorAll(".calculator__button--func"); // get all functions buttons
+const btnOperators = document.querySelectorAll(".calculator__button--basic-op") // target operators 
+const allClearSelector = document.getElementById("all-clear");
+const deleteBtnSelector = document.getElementById("delete__opt"); // string
+const equalBtnSelector = document.getElementById("equal__opt"); // string
+const history = document.querySelector('.history__group');
 
-
-
-// // Import the provided advanced functions
-// import {
-//   advancedOperation
-// } from "./helpers.js"; // Adjust the import path
-
-// // Create an instance of the Calculator class
-//  const calculator = new Calculator();
-
-// const btnNumbers = document.querySelectorAll('.calculator__button--num');
-// const btnOperations = document.querySelectorAll('.calculator__button--basic-op');
-// const btnAdvancedOperations = document.querySelectorAll('.calculator__button--func');
-// const equalsButton = document.querySelector('[data-equal]');
-// const deleteButton = document.querySelector('[data-delete]');
-// const allClearButton = document.querySelector('[data-all-clear]');
-// const previousInput = document.querySelector('[data-previous-input]');
-// const currentInput = document.querySelector('[data-current-input]');
-// const degitAvailable =document.querySelector('[data-degit]');
-// const history = document.querySelector('.history__group');
-
-// let prevOperand = previousInput.innerText;
-// let currentOperand = currentInput.value;
-// let operation;
-// let advancedOperator;
-
-// let historyItems = [];
-// const addedHistoryItems = new Set();// Keep track of added history items
-
-// // Events handlers
-
-// //reset
-// const reset = () => {
-//   prevOperand = "";
-//   currentOperand = "";
-//   operation = undefined;
-//   advancedOperator = undefined;
-//   degitAvailable.disabled = false;
-// };
-
-// //delete an input
-// const deleteInput = () => {
-//   currentOperand = currentOperand.toString().slice(0, -1);
-//   if (currentOperand.toString().includes(".")){
-//     return;
-//   }else{
-//     degitAvailable.disabled = false;
-//   }
-// };
-
-// //add a number
-// const addNumber = (number) => {
-//   if (number==="." && currentOperand.toString().includes(".")){
-//     degitAvailable.disabled = true;
-//     return;
-//   }
-//   if (currentOperand.toString().includes(".")){
-//     degitAvailable.disabled = true;
-//     currentOperand = currentOperand.toString() + number.toString();
-//   }else if (number==="." || !currentOperand.toString().includes(".")){
-//     degitAvailable.disabled = false;
-//     currentOperand = currentOperand.toString() + number.toString();
-//   }else{
-//     currentOperand = currentOperand.toString() + number.toString();
-//   }
-// };
-
-// // select an operation
-// const operationSelection = (operate) => {
-//   if (currentOperand === "") return;
-//   operation = operate;
-//   prevOperand = currentOperand;
-//   currentOperand = "";
-
-//   //reset the degit button
-//   degitAvailable.disabled = false;
-// };
-
-// // function to select an advanced operation
-// const advancedOperationSelection = (operate) => {
-//   if (currentInput === "") return;
-//   advancedOperator = operate.toString();
-//   prevOperand = currentOperand;
-// };
-
-// //function to implement basic calculation (addition, division ...) 
-// const compute =(operate)=> {
-//   let result;
-//   let expression;
-//   let prev = parseFloat(prevOperand);
-//   let current = parseFloat(currentOperand);
-//   console.log(prev);
-//   console.log(current);
-//   if (isNaN(prev) || isNaN(current)) return
-//   /* if (current === 0 ){
-//     previousInput.innerText="Cant devide by ZERO!";
-//     currentOperand="";
-//     operation = undefined;
-//     //setTimeout(reset(), 1500);
-//     return;
-//   } */
-//   expression = `${prev} ${operate} ${current}`
-//   result=displayNumber(calculator.operate(operate,prev,current));
-//   historyItems.push({expression,result})
-//   currentOperand = result;
-//   operation = undefined;
-//   prevOperand = "";
-
-// };
-
-
-// // Function to handle degit number
-// const displayNumber=(number)=> {
-//   const stringNumber = number.toString();
-//   const integerDigits = parseFloat(stringNumber.split('.')[0])
-//   const decimalDigits = stringNumber.split('.')[1]
-//   let integerDisplay;
-//   if (isNaN(integerDigits)) {
-//     integerDisplay = ''
-//   } else {
-//     integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
-//   }
-//   if (decimalDigits != null) {
-//     const decimalDegitReduced = decimalDigits.slice(0,8);
-//     return `${integerDisplay}.${decimalDegitReduced}`
-//   } else {
-//     return integerDisplay
-//   }
-// }
-
-// // Function to update the result afetr each operation
-// const updateDisplay=()=> {
-//   currentInput.value =
-//     displayNumber(currentOperand);
-
-//   if (operation != null) {
-//      previousInput.innerText =
-//       `${displayNumber(prevOperand)} ${operation} ${displayNumber(currentOperand)} `;
-//   } else {
-//     previousInput.innerText = ''
-//   }
-// }
-
-// // Function to handle advanced operations like(sin, cos ...)
-// function handleAdvancedOperation(advancedOperator) {
-//   let result;
-//   let expression;
-//   let prev = parseFloat(prevOperand);
-//   let current = parseFloat(currentOperand);
-//   if (isNaN(prev) && isNaN(current)) return
-//   result=displayNumber(advancedOperation(advancedOperator,prev,current));
-//   previousInput.textContent = `${advancedOperator} (${prev})`;
-//   expression=previousInput.textContent ;
-//   currentInput.value = displayNumber(result);
-//   historyItems.push({expression,result});
-//   advancedOperator=undefined; 
-// }
-
-
-
-
-
-
-// //Events listners 
-
-// btnNumbers.forEach(button => {
-//   button.addEventListener('click', () => {
-//     addNumber(button.innerText);
-//     updateDisplay();
-//   })
-// })
-
-// btnOperations.forEach(button => {
-//   button.addEventListener('click', () => {
-//     operationSelection(button.innerText);
-//     updateDisplay();
-//   })
-// })
-
-// equalsButton.addEventListener('click', button => {
-//   if (currentInput === "") return;
-//     compute(operation);
-//     updateDisplay();
-//     updateHistory ();
-
-// })
-
-// allClearButton.addEventListener('click', button => {
-//  reset();
-//   updateDisplay();
-// })
-
-// deleteButton.addEventListener('click', button => {
-//   deleteInput();
-//   updateDisplay();
-// })
-
-// btnAdvancedOperations.forEach( button => {
-//   button.addEventListener('click', () => {
-
-//     advancedOperationSelection(button.innerText)
-//     handleAdvancedOperation(button.innerText);
-//     updateHistory ();
-//     //updateDisplay();
-//   })
-// });
-
-// // add event listener for keyboard support
-// document.addEventListener("keydown", (event) => {
-//   const key = event.key;
-// console.log(key);
-//   switch (key) {
-//     case "Backspace":
-//       deleteInput();
-//       break;
-//     case "+":
-//     case "-":
-//     case "*":
-//     case "/":
-//       operationSelection(key);
-//       break;
-//     case "Enter":
-//       compute();
-//       break;
-//     case "Escape":
-//       reset();
-//       break;
-//     default:
-//       if (!isNaN(key) || key === ".") {
-//         addNumber(key);
-//       }
-//       break;
-//   }
-
-//   updateDisplay();
-// });
-// utils.js
-
+const floatingPointSelector = document.querySelector(".calculator__button--point"); // string
+let historyItems = [];
+const addedHistoryItems = new Set();// Keep track of added history items
 export class Calculator {
+  constructor() {
+    this.syntaxErrorActive = false;
+  }
   add(a, b) {
     return parseFloat(a) + parseFloat(b);
   }
@@ -252,8 +32,19 @@ export class Calculator {
     return parseFloat(a) * parseFloat(b);
   }
 
+  toggleSyntaxError(status = false) {
+    if (status) {
+      currentValue.value = "Syntax error"
+      this.syntaxErrorActive = true
+      return;
+    }
+    this.syntaxErrorActive = false;
+  }
+
   divide(a, b) {
     if (parseFloat(b) === 0) {
+      clearAll();
+      this.toggleSyntaxError(true);
       throw new Error("Cannot divide by zero");
     }
     return parseFloat(a) / parseFloat(b);
@@ -274,180 +65,50 @@ export class Calculator {
     }
   }
 }
-
-function factorialRecursive(n) {
-  if (n === 0 || n === 1) {
-    return 1;
-  } else {
-    return n * factorialRecursive(n - 1);
-  }
-}
-
-function updateHistory() {
-  console.log(historyItems)
-  historyItems.forEach(obj => {
-    if (!addedHistoryItems.has(obj)) {
-      const historyItem = document.createElement('div');
-      historyItem.classList.add('history__option');
-
-      const reuseButton = document.createElement('button');
-      reuseButton.classList.add('history__reuse-option-btn');
-      reuseButton.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" class="reuse__svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"></path>
-        </svg>
-      `;
-
-      const historyOptionGroup = document.createElement('div');
-      historyOptionGroup.classList.add('history__option--group');
-
-      const historyOptionContent = document.createElement('div');
-      historyOptionContent.classList.add('history__option--content');
-
-      const historyOptionCalculation = document.createElement('p');
-      historyOptionCalculation.classList.add('history__option--calc');
-      historyOptionCalculation.textContent = obj.expression;
-
-      const historyOptionResult = document.createElement('p');
-      historyOptionResult.classList.add('history__option--result');
-      historyOptionResult.textContent = obj.result;
-
-      historyOptionContent.appendChild(historyOptionCalculation);
-      historyOptionContent.appendChild(historyOptionResult);
-
-      historyOptionGroup.appendChild(historyOptionContent);
-
-      historyItem.appendChild(reuseButton);
-      historyItem.appendChild(historyOptionGroup);
-
-      history.appendChild(historyItem);
-
-      addedHistoryItems.add(obj); // Add the item to the record
-    }
-  });
-}
-
-
-function advancedOperation(operation, operand) {
-  switch (operation) {
-    case "sin":
-      currentValue.value += "sin()"
-      currentValue.setSelectionRange(currentValue.value.length - 1, currentValue.value.length - 1);
-      currentValue.focus();
-      return Math.sin(operand);
-    case "cos":
-      currentValue.value += "cos()"
-      return Math.cos(operand);
-    case "tan":
-      currentValue.value += "tan()"
-      return Math.tan(operand);
-    case "π":
-      currentValue.value += "π";
-      return 2 * Math.PI * operand;
-    case "%":
-      currentValue.value += "%";
-      return (operand / 100);
-    case "sqr":
-      currentValue.value += "²";
-      return Math.sqrt(operand);
-
-    case "n!":
-      if (operand === 0) {
-        currentValue.value += "!";
-        return 1;
-      } else {
-        currentValue.value += "!";
-        return operand * factorialRecursive("n!", operand - 1);
-      }
-    case "ln":/*natural log*/
-      return Math.log(operand);
-    case "log":
-      return Math.log10(operand);
-    default:
-      throw new Error("Unsupported operation");
-  }
-}
-
-
-
-// globals
-let result = "";
-let resultList = [];
-let secondOperand = ""
-const operands = ["-", "+", "*", "/", "="];
-
-const currentValue = document.getElementById("active__value"); // string
-const previousEq = document.getElementById("previous__eq"); // string
-const btnNumbers = document.querySelectorAll('.calculator__button--num'); // get all numbers 
-const btnFunctions = document.querySelectorAll(".calculator__button--func"); // get all functions buttons
-const btnOperators = document.querySelectorAll(".calculator__button--basic-op") // target operators 
-const allClearSelector = document.getElementById("all-clear");
-const deleteBtnSelector = document.getElementById("delete__opt"); // string
-const equalBtnSelector = document.getElementById("equal__opt"); // string
-const floatingPointSelector = document.getElementById("floating__point"); // string
-const history = document.querySelector('.history__group');
-let historyItems = [];
-const addedHistoryItems = new Set();// Keep track of added history items
-
-let pointerPosition = currentValue.value.length;
-
-// setup basic history 
-let historyValues = [];
 const calculator = new Calculator();
 
 /* functions */
 
 function updateDisplay(number) {
   // put number on current value and previousEq
-  currentValue.value += number
-  if (currentValue.value.includes(".")) {
+  currentValue.value += limitFloatingPoint(number)
+  if (currentValue.value.includes(",")) {
     floatingPointSelector.disabled = true;
   }
 
-  result += number
+  result += limitFloatingPoint(number)
   validateCurrentInput(result)
 }
 
-function updateContent(newContent, newPosition) {
-  content = newContent;
-  pointerPosition = newPosition;
-
-  // Update the user interface
-  // ...
-}
-
-// Function to handle the delete button press
-
-
-/* compute functiion (calculation) */
+/* compute function (calculation) */
 
 function compute() {
-  console.log(processArray(resultList))
   const processedList = processArray(resultList);
 
-  const resultCalc = calculator.operate(processedList[1], processedList[0], processedList[2])
-  previousEq.innerText = resultCalc;
-  result = `${resultCalc}${secondOperand}`
-  currentValue.value = `${resultCalc}${secondOperand}`;
-  let expression = `${processedList[0]} ${processedList[1]} ${processedList[2]}`
-  historyItems.push({ expression, result })
-  // if (isNaN(prev) || isNaN(current)) return
-  /* if (current === 0 ){
-    previousInput.innerText="Cant devide by ZERO!";
-    currentOperand="";
-    operation = undefined;
-    //setTimeout(reset(), 1500);
-    return;
-  } */
-  // result = displayNumber(calculator.operate(operate, prev, current));
-  // historyItems.push({ expression, result })
-  // currentOperand = result;
-  // operation = undefined;
-  // prevOperand = "";
+  const previousFirstNum = parseFloat(processedList[0])
+  const previousSecondNum = parseFloat(processedList[2])
 
+  if (isNaN(previousFirstNum) || isNaN(previousSecondNum) || currentValue.value.includes("Syntax Error")) {
+    currentValue.value = "Syntax Error"
+    return;
+  } else {
+    disableIfError();
+  }
+
+  const resultCalc = calculator.operate(processedList[1], processedList[0], processedList[2])
+  previousEq.innerText = limitFloatingPoint(resultCalc);
+  result = `${limitFloatingPoint(resultCalc)}${secondOperand}`
+  currentValue.value = `${limitFloatingPoint(resultCalc)}${secondOperand}`;
+  let expression = `${processedList[0]} ${processedList[1]} ${processedList[2]}`
+
+  historyItems.push({ expression, result: limitFloatingPoint(resultCalc) })
 }
 
 // utils function 
+
+// prevent event simultaneous calls 
+
+document.addEventListener("load", clearAll);
 
 function processArray(arr) {
   const result = [];
@@ -459,11 +120,8 @@ function processArray(arr) {
       result.push(item.join('')); // Concatenate array elements
     }
   }
-
   return result;
 }
-
-
 
 function validateCurrentInput(result) {
 
@@ -488,21 +146,86 @@ function validateCurrentInput(result) {
     }
     if (counter == 2) {
       secondOperand = result[i]
-      compute();
+      compute(true);
+      updateHistory();
       counter = 0
       break;
     }
   }
 }
 
+function updateHistory() {
+  historyItems.forEach(obj => {
+    if (!addedHistoryItems.has(obj)) {
+      const historyItem = document.createElement('div');
+      historyItem.classList.add('history__option');
+
+      const historyOptionGroup = document.createElement('div');
+      historyOptionGroup.classList.add('history__option--group');
+
+      const historyOptionContent = document.createElement('div');
+      historyOptionContent.classList.add('history__option--content');
+
+      const historyOptionCalculation = document.createElement('p');
+      historyOptionCalculation.classList.add('history__option--calc');
+      historyOptionCalculation.textContent = obj.expression;
+
+      const historyOptionResult = document.createElement('p');
+      historyOptionResult.classList.add('history__option--result');
+      historyOptionResult.textContent = obj.result;
+
+      historyOptionContent.appendChild(historyOptionCalculation);
+      historyOptionContent.appendChild(historyOptionResult);
+
+      historyOptionGroup.appendChild(historyOptionContent);
+
+      historyItem.appendChild(historyOptionGroup);
+
+      history.appendChild(historyItem);
+
+      addedHistoryItems.add(obj); // Add the item to the record
+    }
+  });
+}
 
 /* event listeners */
 
-btnNumbers.forEach(button => {
-  button.addEventListener('click', () => {
+function limitFloatingPoint(inputNumber) {
 
+  const numString = inputNumber.toString();
+  const indexOfDecimal = numString.indexOf('.');
+
+  if (indexOfDecimal === -1) {
+    return inputNumber; // No decimal point, return the original number
+  }
+
+  const digitsAfterDecimal = numString.length - indexOfDecimal - 1;
+
+  if (digitsAfterDecimal > 4) {
+    return parseFloat(inputNumber.toFixed(4));
+  } else {
+    return inputNumber;
+  }
+}
+
+btnOperators.forEach(button => {
+  button.addEventListener('click', () => {
     updateDisplay(button.innerText)
   })
+})
+
+btnNumbers.forEach(button => {
+  button.addEventListener('click', () => {
+    calculator.toggleSyntaxError(false);
+    if (button.textContent !== ",") {
+      updateDisplay(button.innerText)
+    }
+  })
+})
+
+floatingPointSelector.addEventListener("click", () => {
+  updateDisplay(",")
+  floatingPointSelector.disabled = true;
 })
 
 equalBtnSelector.addEventListener('click', () => {
@@ -521,76 +244,88 @@ equalBtnSelector.addEventListener('click', () => {
   }
 })
 
-
-btnOperators.forEach(button => {
-  button.addEventListener('click', () => {
-    /*   addNumber(button.innerText);
-      updateDisplay(); */
-    updateDisplay(button.innerText)
-    console.log(button.innerText)
-  })
-})
-
 btnFunctions.forEach(button => {
   button.addEventListener('click', () => {
     advancedOperation(button.textContent, currentValue.value)
   })
 })
 
-// Add delete button funcitonality 
-deleteBtnSelector.addEventListener("click", () => {
-  if (currentValue.value == null || currentValue.value.length === 0) {
+function deletePrevious() {
+  if (currentValue.value == null || currentValue.value.length === 0 || currentValue.value.includes("Syntax Error")) {
+    disableIfError();
     return;
   }
 
-  if (currentValue.value.includes(".")) {
+  if (!currentValue.value.slice(0, -1).includes(",")) {
     floatingPointSelector.disabled = false;
   }
   resultList.slice(-1)
   result = currentValue.value.slice(0, -1)
   currentValue.value = result;
-})
+}
 
+// Add delete button funcitonality 
+deleteBtnSelector.addEventListener("click", deletePrevious)
 
-// Add all clear funcitonality 
-allClearSelector.addEventListener("click", () => {
-  // reset input value on calculator screen
-  result = 0;
+function clearAll() {
+  result = "";
   currentValue.value = "";
   previousEq.innerText = ""
   resultList = [];
-})
+  floatingPointSelector.disabled = false;
+}
+
+// Add all clear funcitonality 
+allClearSelector.addEventListener("click", clearAll);
+
+function disableIfError() {
+  if (currentValue.value.includes("Syntax Error")) {
+    clearAll();
+  }
+}
 
 // add event listener for keyboard support
 document.addEventListener("keydown", (event) => {
   const key = event.key;
-  console.log(key);
+  calculator.toggleSyntaxError(false);
   switch (key) {
+    case "1":
+    case "2":
+    case "3":
+    case "4":
+    case "5":
+    case "6":
+    case "7":
+    case "8":
+    case "9":
+    case "0":
+      disableIfError();
+      updateDisplay(event.key)
+      break;
     case "Backspace":
-      // deleteInput();
+      deletePrevious();
       break;
     case "+":
     case "-":
     case "*":
     case "/":
-      // operationSelection(key);
-
+      disableIfError();
+      updateDisplay(event.key)
+      validateCurrentInput(currentValue.value)
       break;
     case "Enter":
-      // compute();
-
+      // set focus on active element 
+      equalBtnSelector.focus();
+      compute();
+      updateHistory();
       break;
     case "Escape":
-
-      // reset();
+      allClearSelector.focus();
+      clearAll();
       break;
     default:
-
-      /*      if (!isNaN(key) || key === ".") {
-             addNumber(key);
-           } */
+      event.preventDefault()
+      // button not supported
       break;
   }
-
-  /* updateDisplay(); */
 });

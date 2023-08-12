@@ -9,21 +9,24 @@ import {
 // Create an instance of the Calculator class
  const calculator = new Calculator();
 
-const btnNumbers = document.querySelectorAll('.calculator__number');
-const btnOperations = document.querySelectorAll('.calculator__operator');
-const btnAdvancedOperations = document.querySelectorAll('.calculator__function');
-const equalsButton = document.querySelector('[data-equals]');
+const btnNumbers = document.querySelectorAll('.calculator__button--num');
+const btnOperations = document.querySelectorAll('.calculator__button--basic-op');
+const btnAdvancedOperations = document.querySelectorAll('.calculator__button--func');
+const equalsButton = document.querySelector('[data-equal]');
 const deleteButton = document.querySelector('[data-delete]');
 const allClearButton = document.querySelector('[data-all-clear]');
 const previousInput = document.querySelector('[data-previous-input]');
 const currentInput = document.querySelector('[data-current-input]');
-const degitAvailable =document.querySelector('.degit');
+const degitAvailable =document.querySelector('[data-degit]');
+const history = document.querySelector('.history__group');
 
 let prevOperand = previousInput.innerText;
-let currentOperand = currentInput.innerText;
+let currentOperand = currentInput.value;
 let operation;
 let advancedOperator;
 
+let historyItems = [];
+const addedHistoryItems = new Set();// Keep track of added history items
 
 // Events handlers
 
@@ -42,7 +45,7 @@ const deleteInput = () => {
   if (currentOperand.toString().includes(".")){
     return;
   }else{
-    document.querySelector('.degit').disabled = false;
+    degitAvailable.disabled = false;
   }
 };
 
@@ -61,19 +64,16 @@ const addNumber = (number) => {
   }else{
     currentOperand = currentOperand.toString() + number.toString();
   }
-    
- 
 };
 
 // select an operation
 const operationSelection = (operate) => {
-  if (currentInput === "") return;
-  if (previousInput !== "") {
-    compute(operate);
-  }
+  if (currentOperand === "") return;
   operation = operate;
   prevOperand = currentOperand;
   currentOperand = "";
+
+  //reset the degit button
   degitAvailable.disabled = false;
 };
 
@@ -82,16 +82,27 @@ const advancedOperationSelection = (operate) => {
   if (currentInput === "") return;
   advancedOperator = operate.toString();
   prevOperand = currentOperand;
-  currentOperand = "";
 };
 
 //function to implement basic calculation (addition, division ...) 
 const compute =(operate)=> {
   let result;
+  let expression;
   let prev = parseFloat(prevOperand);
   let current = parseFloat(currentOperand);
+  console.log(prev);
+  console.log(current);
   if (isNaN(prev) || isNaN(current)) return
-  result=calculator.operate(operate,prev,current);
+  /* if (current === 0 ){
+    previousInput.innerText="Cant devide by ZERO!";
+    currentOperand="";
+    operation = undefined;
+    //setTimeout(reset(), 1500);
+    return;
+  } */
+  expression = `${prev} ${operate} ${current}`
+  result=displayNumber(calculator.operate(operate,prev,current));
+  historyItems.push({expression,result})
   currentOperand = result;
   operation = undefined;
   prevOperand = "";
@@ -111,7 +122,8 @@ const displayNumber=(number)=> {
     integerDisplay = integerDigits.toLocaleString('en', { maximumFractionDigits: 0 })
   }
   if (decimalDigits != null) {
-    return `${integerDisplay}.${decimalDigits}`
+    const decimalDegitReduced = decimalDigits.slice(0,8);
+    return `${integerDisplay}.${decimalDegitReduced}`
   } else {
     return integerDisplay
   }
@@ -119,12 +131,12 @@ const displayNumber=(number)=> {
 
 // Function to update the result afetr each operation
 const updateDisplay=()=> {
-  currentInput.innerText =
+  currentInput.value =
     displayNumber(currentOperand);
    
   if (operation != null) {
      previousInput.innerText =
-      `${displayNumber(prevOperand)} ${operation} `;
+      `${displayNumber(prevOperand)} ${operation} ${displayNumber(currentOperand)} `;
   } else {
     previousInput.innerText = ''
   }
@@ -133,13 +145,63 @@ const updateDisplay=()=> {
 // Function to handle advanced operations like(sin, cos ...)
 function handleAdvancedOperation(advancedOperator) {
   let result;
+  let expression;
   let prev = parseFloat(prevOperand);
   let current = parseFloat(currentOperand);
-  if (isNaN(prev) || isNaN(current)) return
-  result=advancedOperation(advancedOperator,prev,current);
-  previousInput.textContent = `${advancedOperator}(${prev},${current})`;
-  currentInput.textContent = result; 
+  if (isNaN(prev) && isNaN(current)) return
+  result=displayNumber(advancedOperation(advancedOperator,prev,current));
+  previousInput.textContent = `${advancedOperator} (${prev})`;
+  expression=previousInput.textContent ;
+  currentInput.value = displayNumber(result);
+  historyItems.push({expression,result});
+  advancedOperator=undefined; 
 }
+
+//function to implement history computation and operations
+function updateHistory() {
+  historyItems.forEach(obj => {
+    if (!addedHistoryItems.has(obj)) {
+      const historyItem = document.createElement('div');
+      historyItem.classList.add('history__option');
+
+      const reuseButton = document.createElement('button');
+      reuseButton.classList.add('history__reuse-option-btn');
+      reuseButton.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" class="reuse__svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3"></path>
+        </svg>
+      `;
+
+      const historyOptionGroup = document.createElement('div');
+      historyOptionGroup.classList.add('history__option--group');
+
+      const historyOptionContent = document.createElement('div');
+      historyOptionContent.classList.add('history__option--content');
+
+      const historyOptionCalculation = document.createElement('p');
+      historyOptionCalculation.classList.add('history__option--calc');
+      historyOptionCalculation.textContent = obj.expression;
+
+      const historyOptionResult = document.createElement('p');
+      historyOptionResult.classList.add('history__option--result');
+      historyOptionResult.textContent = obj.result;
+
+      historyOptionContent.appendChild(historyOptionCalculation);
+      historyOptionContent.appendChild(historyOptionResult);
+
+      historyOptionGroup.appendChild(historyOptionContent);
+
+      historyItem.appendChild(reuseButton);
+      historyItem.appendChild(historyOptionGroup);
+
+      history.appendChild(historyItem);
+      
+      addedHistoryItems.add(obj); // Add the item to the record
+    }
+  });
+}
+
+
 
 
 //Events listners 
@@ -160,12 +222,10 @@ btnOperations.forEach(button => {
 
 equalsButton.addEventListener('click', button => {
   if (currentInput === "") return;
-  if (operation){
     compute(operation);
     updateDisplay();
-  } else if (advancedOperator) {
-    handleAdvancedOperation(advancedOperator,prevOperand,currentOperand);
-  }
+    updateHistory ();
+
 })
 
 allClearButton.addEventListener('click', button => {
@@ -180,8 +240,11 @@ deleteButton.addEventListener('click', button => {
 
 btnAdvancedOperations.forEach( button => {
   button.addEventListener('click', () => {
-    advancedOperationSelection(button.innerText);
-    updateDisplay();
+    
+    advancedOperationSelection(button.innerText)
+    handleAdvancedOperation(button.innerText);
+    updateHistory ();
+    //updateDisplay();
   })
 });
 

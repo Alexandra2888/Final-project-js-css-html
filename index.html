@@ -1,169 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta name="description" content="Final project" />
-  <meta name="keywords" content="HTML, CSS, JavaScript" />
-  <title>Calculator</title>
-  <link rel="stylesheet" href="./css/styles.css" />
-</head>
-
-
-
-<body>
-  <main class="main">
-    <div class="container">
-      <div class="history">
-        <div class="history__wrapper">
-          <div class="history__group">
-            <div class="history__option">
-              <button class="history__reuse-option-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="reuse__svg" fill="none" viewBox="0 0 24 24"
-                  stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
-                </svg>
-              </button>
-
-              <div class="history__option--group">
-                <div class="history__option--content">
-                  <p class="history__option--calc"> 100 + 4</p>
-                  <p class="history__option--result">104</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="history__option">
-              <button class="history__reuse-option-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="reuse__svg" fill="none" viewBox="0 0 24 24"
-                  stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
-                </svg>
-              </button>
-
-              <div class="history__option--group">
-                <div class="history__option--content">
-                  <p class="history__option--calc"> 100 + 4</p>
-                  <p class="history__option--result">104</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="history__option">
-              <button class="history__reuse-option-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="reuse__svg" fill="none" viewBox="0 0 24 24"
-                  stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
-                </svg>
-              </button>
-
-              <div class="history__option--group">
-                <div class="history__option--content">
-                  <p class="history__option--calc"> 100 + 4</p>
-                  <p class="history__option--result">104</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="history__option">
-              <button class="history__reuse-option-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="reuse__svg" fill="none" viewBox="0 0 24 24"
-                  stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
-                </svg>
-              </button>
-
-              <div class="history__option--group">
-                <div class="history__option--content">
-                  <p class="history__option--calc"> 100 + 4</p>
-                  <p class="history__option--result">104</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="history__option">
-              <button class="history__reuse-option-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="reuse__svg" fill="none" viewBox="0 0 24 24"
-                  stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
-                </svg>
-              </button>
-
-              <div class="history__option--group">
-                <div class="history__option--content">
-                  <p class="history__option--calc"> 100 + 4</p>
-                  <p class="history__option--result">104</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="history__option">
-              <button class="history__reuse-option-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="reuse__svg" fill="none" viewBox="0 0 24 24"
-                  stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
-                </svg>
-              </button>
-
-              <div class="history__option--group">
-                <div class="history__option--content">
-                  <p class="history__option--calc"> 100 + 4</p>
-                  <p class="history__option--result">104</p>
+  <head>
+    <meta name="description" content="Final project" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script type="module" src="./js/utils.js" defer></script>
+    <script type="module" src="./js/helpers.js" defer></script>
+    <script type="module" src="./js/main.js" defer></script>
+  </head>
+  <body>
+    <main class="main">
+      <div class="container">
+        <div class="history">
+          <div class="history__wrapper">
+            <div class="history__group">
+              <div class="history__option">
+                <button class="history__reuse-option-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       class="reuse__svg"
+                       fill="none"
+                       viewBox="0 0 24 24"
+                       stroke-width="1.5"
+                       stroke="currentColor"
+                       class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" />
+                  </svg>
+                </button>
+                <div class="history__option--group">
+                  <div class="history__option--content">
+                    <p class="history__option--calc">100 + 4</p>
+                    <p class="history__option--result">104</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
-      </div>
-      <div class="calculator">
-        <div class="calculator__wrapper">
-          <div class="calculator__screen">
-            <div class="calculator__screen-previous"></div>
-            <input class="calculator__screen-calc" type="text" placeholder="0" />
-          </div>
-          <div class="calculator__buttons">
-            <div class="calculator__button double-width calculator__button--func">ln</div>
-            <div class="calculator__button calculator__button--func">abs</div>
-            <div class="calculator__button calculator__button--func">log</div>
-            <div class="calculator__button calculator__button--func">n!</div>
-            <div class="calculator__button calculator__button--func">bin</div>
-            <div class="calculator__button calculator__button--func">dec</div>
-            <div class="calculator__button calculator__button--func">oct</div>
-            <div class="calculator__button calculator__button--func">%</div>
-            <div class="calculator__button calculator__button--func">x<sup>2</sup></div>
-            <div class="calculator__button calculator__button--func">x<sup>3</sup></div>
-            <div class="calculator__button calculator__button--func">x<sup>n</sup></div>
-            <div class="calculator__button calculator__button--func">sin</div>
-            <div class="calculator__button calculator__button--func">cos</div>
-            <div class="calculator__button calculator__button--func">tan</div>
-            <div class="calculator__button calculator__button--func">&pi;</div>
-            <div class="calculator__button calculator__button--basic-op">+</div>
-            <div class="calculator__button calculator__button--basic-op">-</div>
-            <div class="calculator__button calculator__button--basic-op">/</div>
-            <div class="calculator__button calculator__button--basic-op">*</div>
-            <div class="calculator__button calculator__button--num">7</div>
-            <div class="calculator__button calculator__button--num">8</div>
-            <div class="calculator__button calculator__button--num">9</div>
-            <div class="calculator__button calculator__button--ac">AC</div>
-            <div class="calculator__button calculator__button--num">4</div>
-            <div class="calculator__button calculator__button--num">5</div>
-            <div class="calculator__button calculator__button--num">6</div>
-            <div class="calculator__button triple-height calculator__button--equal">=</div>
-            <div class="calculator__button calculator__button--num">1</div>
-            <div class="calculator__button calculator__button--num">2</div>
-            <div class="calculator__button calculator__button--num">3</div>
-            <div class="calculator__button calculator__button--num">0</div>
-            <div class="calculator__button calculator__button--num">,</div>
-            <div class="calculator__button calculator__button--equal">DEL</div>
+        <div class="calculator">
+          <div class="calculator__wrapper">
+            <div class="calculator__screen">
+              <div class="calculator__screen-previous" data-previous-input></div>
+              <input class="calculator__screen-calc"
+                     type="text"
+                     placeholder="0"
+                     value=""
+                     data-current-input />
+            </div>
+            <div class="calculator__buttons">
+              <div class="calculator__button double-width calculator__button--func">ln</div>
+              <div class="calculator__button calculator__button--func">abs</div>
+              <div class="calculator__button calculator__button--func">log</div>
+              <div class="calculator__button calculator__button--func">n!</div>
+              <!--     <div class="calculator__button calculator__button--func">bin</div>
+              <div class="calculator__button calculator__button--func">dec</div>
+              <div class="calculator__button calculator__button--func">oct</div> -->
+              <div class="calculator__button calculator__button--func">%</div>
+              <div class="calculator__button calculator__button--func">
+                x<sup>2</sup>
+              </div>
+              <div class="calculator__button calculator__button--func">
+                x<sup>3</sup>
+              </div>
+              <!-- <div class="calculator__button calculator__button--func">
+                x<sup>n</sup>
+              </div> -->
+              <div class="calculator__button calculator__button--func">sin</div>
+              <div class="calculator__button calculator__button--func">cos</div>
+              <div class="calculator__button calculator__button--func">tan</div>
+              <div class="calculator__button calculator__button--func">&pi;</div>
+              <div class="calculator__button calculator__button--basic-op">+</div>
+              <div class="calculator__button calculator__button--basic-op">-</div>
+              <div class="calculator__button calculator__button--basic-op">/</div>
+              <div class="calculator__button calculator__button--basic-op">*</div>
+              <div class="calculator__button calculator__button--num">7</div>
+              <div class="calculator__button calculator__button--num">8</div>
+              <div class="calculator__button calculator__button--num">9</div>
+              <div class="calculator__button calculator__button--ac" data-all-clear>AC</div>
+              <div class="calculator__button calculator__button--num">4</div>
+              <div class="calculator__button calculator__button--num">5</div>
+              <div class="calculator__button calculator__button--num">6</div>
+              <div class="calculator__button triple-height calculator__button--equal"
+                   data-equal>=</div>
+              <div class="calculator__button calculator__button--num">1</div>
+              <div class="calculator__button calculator__button--num">2</div>
+              <div class="calculator__button calculator__button--num">3</div>
+              <div class="calculator__button calculator__button--num">0</div>
+              <button class="calculator__button calculator__button--num " data-degit>.</button>
+              <div class="calculator__button calculator__button--equal" data-delete>DEL</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <footer class="footer">
-      <p>&copy; Kreativstorm calculator assignment</p>
-    </footer>
-  </main>
-</body>
-
+      <footer class="footer">
+        <p>&copy; Kreativstorm calculator assignment</p>
+      </footer>
+    </main>
+  </body>
 </html>

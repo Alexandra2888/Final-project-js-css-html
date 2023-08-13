@@ -214,6 +214,10 @@ body {
 }
 
 .calculator__screen-calc::placeholder {
+  opacity: 0.4;
+}
+
+.calculator__screen-calc::placeholder {
   color: #40535c;
 }
 .calculator__screen::before {

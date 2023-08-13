@@ -1,23 +1,34 @@
-// utils.js
+import { clearAll } from "./functions.js";
+import { currentValue } from "./selectors.js";
+import { appState } from "./globals.js"
 
-export class Calculator {
+class Calculator {
+  constructor(currentValue, clearAll, errorData) {
+    this.errorData = errorData;
+    this.clearAll = clearAll;
+    this.currentValue = currentValue;
+  }
+
   add(a, b) {
-    return a + b;
+    return parseFloat(a) + parseFloat(b);
   }
 
   subtract(a, b) {
-    return a - b;
+    return parseFloat(a) - parseFloat(b);
   }
 
   multiply(a, b) {
-    return a * b;
+    return parseFloat(a) * parseFloat(b);
   }
 
+
+
   divide(a, b) {
-    if (b === 0) {
+    if (parseFloat(b) === 0) {
+      this.clearAll();
       throw new Error("Cannot divide by zero");
     }
-    return a / b;
+    return parseFloat(a) / parseFloat(b);
   }
 
   operate(operator, a, b) {
@@ -36,3 +47,6 @@ export class Calculator {
   }
 }
 
+// export as singleton
+const calculator = new Calculator(currentValue.value, clearAll);
+export { calculator }

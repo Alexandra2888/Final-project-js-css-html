@@ -62,12 +62,14 @@ export function validateCurrentInput(result) {
       if (indexOfFirstOperator == null) {
         indexOfFirstOperator = i;
       }
+
       if (counter === 1) {
         const resultStringList = result.split("")
         let secondNumber = resultStringList.slice(indexOfFirstOperator + 1, resultStringList.length - 1);
 
         // reinitialize the empty string 
         appState.setResultList([])
+
         if (secondNumber.length > 0) {
           appState.resultList.push(resultStringList.splice(0, indexOfFirstOperator), appState.result[indexOfFirstOperator], secondNumber)
         } else {
@@ -84,7 +86,6 @@ export function validateCurrentInput(result) {
         appState.resultList.slice(0, -2);
         const firstOperand = appState.resultList.slice(0, -1);
         appState.setResultList([...firstOperand, lastOperatorChar]);
-
         currentValue.value = formatExpression(appState.resultList);
         appState.setResult(currentValue.value); // reset the new result 
         counter--; // reduce counter to add mulitple signs change 
@@ -164,6 +165,7 @@ export function equalAction() {
   const resultValue = currentValue.value;
   for (let i = 0; i < appState.operands.length; i++) {
     if (resultValue.includes(appState.operands[i])) {
+      if (appState.operands[i] == "-" && i < 1) continue; // skip first itteration in case minus is the first sign in calculation 
       const resultStringList = appState.result.split("")
       const indexOfActiveOperator = resultValue.indexOf(appState.operands[i]);
       let secondNumber = resultStringList.slice(indexOfActiveOperator + 1);
